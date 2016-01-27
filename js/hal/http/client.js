@@ -6,6 +6,10 @@ HAL.Http.Client = function(opts) {
 
 HAL.Http.Client.prototype.get = function(url) {
   var self = this;
+  var full = "hal=f";
+  if (url.indexOf(full) < 0) {
+    url = url.concat('?').concat(full);
+  }
   this.vent.trigger('location-change', { url: url });
   var jqxhr = $.ajax({
     url: url,
