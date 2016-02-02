@@ -1,3 +1,5 @@
+/* global URI */
+
 (function() {
   var urlRegex = /(http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/;
 
@@ -26,15 +28,15 @@
        var uri = new URI(rel)
        var norm = uri.absoluteTo(cur);
 
-       return norm
+       return norm;
 	},
     normalizeUrlAndRemove: function(rel) {
        var cur = location.hash.slice(1);
-       rel = rel.split("?hal=")[0].split("&hal=")[0];
-       var uri = new URI(rel)
+       var uri = new URI(rel);
+       uri = uri.removeSearch("hal");
        var norm = uri.absoluteTo(cur);
 
-       return norm
+       return norm;
 	},
     buildUrl: function(rel) {
       if (!HAL.currentDocument._links) {

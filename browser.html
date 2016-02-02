@@ -100,7 +100,7 @@
               <% } %>
             </td>
             <td>
-              <a class="non-get btn btn-warning" href="<%= HAL.normalizeUrl(obj.href) %>" title="Perform non-GET request">!</a>
+              <a class="non-get btn btn-warning" href="<%= HAL.normalizeUrlAndRemove(obj.href) %>" title="Perform non-GET request">!</a>
             </td>
           </tr>
         <% } %>
