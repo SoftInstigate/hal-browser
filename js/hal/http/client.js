@@ -1,3 +1,5 @@
+/* global URI */
+
 HAL.Http.Client = function(opts) {
   this.vent = opts.vent;
   this.defaultHeaders = { 'Accept': 'application/hal+json, application/json, */*; q=0.01' };
@@ -9,8 +11,10 @@ HAL.Http.Client.prototype.get = function(url) {
   var hal = "hal";
   var uri = new URI(url);
   if (!uri.hasSearch(hal)) {
-    url = uri.addSearch(hal, "f");
+    uri = uri.addSearch(hal, "f");
   }
+  url = URI.decode(uri);
+  console.log("@@@ url=" + url);
   this.vent.trigger('location-change', { url: url });
   var jqxhr = $.ajax({
     url: url,
